@@ -2,6 +2,7 @@ package gdp_correlations;
 
 import java.util.*;
 
+
 public class CorrelationBin {
 
 	final double T_VALUE = .40;
