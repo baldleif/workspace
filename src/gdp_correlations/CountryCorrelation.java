@@ -1,5 +1,7 @@
 package gdp_correlations;
 
+import java.io.*;
+
 public class CountryCorrelation {
 	
 	int weo1;
@@ -13,6 +15,11 @@ public class CountryCorrelation {
 		correlation = r;
 	}
 	
-	
+	public void Print(PrintStream outfile) {
+		
+		outfile.println(weo1 + " " + weo2 + " " + correlation);
+		
+		
+	}
 	
 }

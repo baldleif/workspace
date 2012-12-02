@@ -29,6 +29,7 @@ public class GDPScanner {
 			Scanner fin = new Scanner(new File("weoreptc.aspx"));
 			
 			countrydata = new ArrayList<CountryBin>();
+			countrycorrelations = new ArrayList<CountryCorrelation>();
 			
 			//Scan through the first line (Garbage) 
 			fin.nextLine();
@@ -121,8 +122,19 @@ public class GDPScanner {
 //			}
 			
 			//Compute r for each pair of countries
+			for (CountryBin a : countrydata)
+				for (CountryBin b : countrydata) {
+					
+					if (a == b)
+						continue;
+					
+					countrycorrelations.add(new CountryCorrelation(a.weocode, b.weocode, a.calcCorrelation(b)));
+				}
 			
+			PrintStream corfile = new PrintStream(new File("correlations.txt"));
 			
+			for (CountryCorrelation c : countrycorrelations)
+				corfile.println(c.weo1 + " " + c.weo2 + " " + c.correlation);
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
