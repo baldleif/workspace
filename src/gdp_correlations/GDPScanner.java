@@ -111,16 +111,6 @@ public class GDPScanner {
 			
 			//Test if calcCorrelation(a, b) works:
 			
-//			Scanner systemin = new Scanner(System.in);
-//			
-//			while (systemin.hasNext()) {
-//				
-//				CountryBin a = fetch(systemin.nextInt());
-//				CountryBin b = fetch(systemin.nextInt());
-//			
-//				System.out.println(a.calcCorrelation(b));
-//			}
-			
 			//Compute r for each pair of countries
 			for (CountryBin a : countrydata)
 				for (CountryBin b : countrydata) {
@@ -135,6 +125,11 @@ public class GDPScanner {
 			
 			for (CountryCorrelation c : countrycorrelations)
 				corfile.println(c.weo1 + " " + c.weo2 + " " + c.correlation);
+			
+			CorrelationBin rBin = new CorrelationBin(new Scanner(new File("correlations.txt")));
+			
+			rBin.G.printWeighted(new PrintStream(new File("weightedEdges.txt")));
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
